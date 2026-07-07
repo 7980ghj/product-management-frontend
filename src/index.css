@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .gradient-orange {
+    background: linear-gradient(135deg, #f97316, #ea580c, #c2410c);
+  }
+
+  .gradient-blue {
+    background: linear-gradient(135deg, #3b82f6, #2563eb, #1d4ed8);
+  }
+
+  .gradient-green {
+    background: linear-gradient(135deg, #22c55e, #16a34a, #15803d);
+  }
+
+  .gradient-purple {
+    background: linear-gradient(135deg, #a855f7, #9333ea, #7e22ce);
+  }
+
+  .gradient-red {
+    background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
+  }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
+  }
+
+  .sidebar-gradient {
+    background: linear-gradient(180deg, #1e1b4b, #312e81, #4c1d95);
+  }
+
+  /* Dreamy Purple-Pink Sky Background */
+  .main-bg {
+    background: linear-gradient(
+      180deg,
+      #8b7fc7 0%,
+      #a78bca 15%,
+      #c4a0d0 25%,
+      #d4a5c9 35%,
+      #e8b4d0 45%,
+      #c9a3d4 55%,
+      #b39ddb 65%,
+      #9fa8da 75%,
+      #90caf9 90%,
+      #80deea 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .main-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 30%, rgba(167, 139, 250, 0.2) 0%, transparent 40%),
+      radial-gradient(ellipse at 40% 60%, rgba(244, 114, 182, 0.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 70% 80%, rgba(147, 197, 253, 0.2) 0%, transparent 40%),
+      radial-gradient(ellipse at 10% 80%, rgba(196, 181, 253, 0.15) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Sparkle stars */
+  .main-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, white, transparent),
+      radial-gradient(2px 2px at 40px 70px, white, transparent),
+      radial-gradient(1px 1px at 90px 40px, white, transparent),
+      radial-gradient(2px 2px at 160px 120px, white, transparent),
+      radial-gradient(1px 1px at 200px 60px, white, transparent),
+      radial-gradient(2px 2px at 300px 80px, white, transparent),
+      radial-gradient(1px 1px at 400px 30px, white, transparent),
+      radial-gradient(2px 2px at 500px 100px, white, transparent),
+      radial-gradient(1px 1px at 600px 50px, white, transparent),
+      radial-gradient(2px 2px at 700px 130px, white, transparent),
+      radial-gradient(1px 1px at 800px 20px, white, transparent),
+      radial-gradient(2px 2px at 150px 200px, white, transparent),
+      radial-gradient(1px 1px at 250px 250px, white, transparent),
+      radial-gradient(2px 2px at 350px 180px, white, transparent),
+      radial-gradient(1px 1px at 450px 220px, white, transparent),
+      radial-gradient(2px 2px at 550px 300px, white, transparent),
+      radial-gradient(1px 1px at 650px 280px, white, transparent),
+      radial-gradient(2px 2px at 750px 350px, white, transparent),
+      radial-gradient(3px 3px at 100px 150px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(3px 3px at 300px 250px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(3px 3px at 500px 180px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(3px 3px at 700px 220px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(4px 4px at 180px 100px, rgba(255,255,255,0.9), transparent),
+      radial-gradient(4px 4px at 420px 280px, rgba(255,255,255,0.9), transparent),
+      radial-gradient(4px 4px at 620px 150px, rgba(255,255,255,0.9), transparent),
+      radial-gradient(4px 4px at 850px 300px, rgba(255,255,255,0.9), transparent);
+    background-size: 900px 400px;
+    animation: sparkle 8s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/50 shadow-lg;
+  }
+
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.15),
+      transparent
+    );
+    transform: rotate(30deg);
+    transition: 0.6s;
+  }
+
+  .shine-effect:hover::after {
+    left: 100%;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes sparkle {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-400px); }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .animate-twinkle {
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.leaf-shape {
+  border-radius: 70% 30% 70% 30% / 60% 60% 40% 40%;
+}
+}
