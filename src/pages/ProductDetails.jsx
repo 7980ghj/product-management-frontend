@@ -79,11 +79,10 @@ const ProductDetails = () => {
 
           {/* Image */}
           <div className="bg-gradient-to-br from-purple-100/50 to-pink-100/50 p-8 flex items-center justify-center min-h-[400px]">
-            <img
-              src={`${BACKEND_URL}${product.productImage}`}
+            <img src={product.image && product.image.startsWith('http') ? product.image : `${BACKEND_URL}${product.image}`} alt={product.name} />
               alt={product.productName}
               className="max-w-full max-h-96 object-contain rounded-2xl shadow-xl shadow-purple-500/10"
-            />
+          
           </div>
 
           {/* Details */}

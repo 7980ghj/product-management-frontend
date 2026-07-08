@@ -151,11 +151,10 @@ const ProductList = () => {
               <div key={product._id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden card-hover group">
                 {/* Image */}
                 <div className="h-52 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden relative">
-                  <img
-                    src={`${BACKEND_URL}${product.productImage}`}
+                    <img src={product.image && product.image.startsWith('http') ? product.image : `${BACKEND_URL}${product.image}`} alt={product.name} />
                     alt={product.productName}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  
                   {/* Status Badge */}
                   <div className="absolute top-3 left-3">
                     <span className={`px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm ${
