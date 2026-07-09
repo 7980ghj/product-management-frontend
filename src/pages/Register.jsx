@@ -103,7 +103,7 @@ const Register = () => {
       await registerUser({
         username: formData.username,
         email: formData.email,
-        password=[REDACTED_PASSWORD]
+        password:[REDACTED_PASSWORD]
       })
 
       toast.success('🎉 Registration successful! Please login.')
