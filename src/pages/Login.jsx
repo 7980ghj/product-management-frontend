@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { FaUser, FaLock, FaEye, FaEyeSlash, FaSignInAlt } from 'react-icons/fa'
+import { loginUser } from '../services/api'
 
 const Login = ({ onLogin }) => {
   const navigate = useNavigate()
@@ -50,7 +51,7 @@ const Login = ({ onLogin }) => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!validateForm()) {
       toast.error('Please fix the errors')
@@ -59,21 +60,23 @@ const Login = ({ onLogin }) => {
 
     setLoading(true)
 
-    // Simulate login (check against registered user in localStorage)
-    setTimeout(() => {
-      const registeredUser = JSON.parse(localStorage.getItem('adminUser'))
+    try {
+      const response = await loginUser({ email: formData.email, password: formData.password })
+      const { token, username } = response.data.data
 
-      if (registeredUser && registeredUser.email === formData.email && registeredUser.password === formData.password) {
-        toast.success('🪔 Welcome back, Admin!')
-        onLogin()
-        navigate('/')
-      } else if (!registeredUser) {
-        toast.error('No account found. Please register first.')
-      } else {
-        toast.error('Invalid email or password')
-      }
+      localStorage.setItem('token', token)
+      localStorage.setItem('user', JSON.stringify({ username, email: formData.email }))
+      localStorage.setItem('isLoggedIn', 'true')
+
+      toast.success('🪔 Welcome back, Admin!')
+      onLogin()
+      navigate('/')
+    } catch (error) {
+      const message = error.response?.data?.message || 'Login failed. Please try again.'
+      toast.error(message)
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
   }
 
   return (

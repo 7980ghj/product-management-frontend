@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { FaUser, FaLock, FaEnvelope, FaEye, FaEyeSlash, FaUserPlus, FaCheck, FaTimes } from 'react-icons/fa'
+import { registerUser } from '../services/api'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -89,7 +90,7 @@ const Register = () => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault()
     if (!validateForm()) {
       toast.error('Please fix the errors')
@@ -98,21 +99,22 @@ const Register = () => {
 
     setLoading(true)
 
-    setTimeout(() => {
-      // Save user to localStorage
-      const userData = {
+    try {
+      await registerUser({
         username: formData.username,
         email: formData.email,
-        password: formData.password,
-      }
-      localStorage.setItem('adminUser', JSON.stringify(userData))
+        password=[REDACTED_PASSWORD]
+      })
 
       toast.success('🎉 Registration successful! Please login.')
       navigate('/login')
+    } catch (error) {
+      const message = error.response?.data?.message || 'Registration failed. Please try again.'
+      toast.error(message)
+    } finally {
       setLoading(false)
-    }, 1000)
+    }
   }
-
   const CheckItem = ({ passed, text }) => (
     <div className={`flex items-center gap-2 text-xs ${passed ? 'text-green-600' : 'text-gray-400'}`}>
       {passed ? <FaCheck className="text-green-500" /> : <FaTimes className="text-gray-300" />}
