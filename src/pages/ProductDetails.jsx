@@ -78,12 +78,13 @@ const ProductDetails = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
 
           {/* Image */}
-          <div className="bg-gradient-to-br from-purple-100/50 to-pink-100/50 p-8 flex items-center justify-center min-h-[400px]">
-            <img src={product.image && product.image.startsWith('http') ? product.image : `${BACKEND_URL}${product.image}`} alt={product.name} />
-              alt={product.productName}
-              className="max-w-full max-h-96 object-contain rounded-2xl shadow-xl shadow-purple-500/10"
-          
-          </div>
+         <div className="bg-gradient-to-br from-purple-100/50 to-pink-100/50 p-8 flex items-center justify-center min-h-[400px]">
+ <img 
+  src={product.productImage && product.productImage.startsWith('data:') ? product.productImage : product.productImage ? `${BACKEND_URL}${product.productImage}` : '/placeholder.png'}
+  alt={product.productName}
+  className="w-full h-full object-cover"
+/>
+</div>
 
           {/* Details */}
           <div className="p-8">

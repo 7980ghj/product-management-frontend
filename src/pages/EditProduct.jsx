@@ -61,8 +61,7 @@ const EditProduct = () => {
           status: product.status,
           productImage: null,
         })
-        setImagePreview(`http://127.0.0.1:5000${product.productImage}`)
-      }
+setImagePreview(product.productImage && product.productImage.startsWith('data:') ? product.productImage : `${BACKEND_URL}${product.productImage}`) }
     } catch (error) {
       toast.error('Failed to fetch product')
       navigate('/products')
@@ -297,8 +296,11 @@ const EditProduct = () => {
             <div className="border-2 border-dashed border-purple-200/50 rounded-2xl p-8 text-center bg-white/30 hover:border-purple-400/50 transition-all">
               {imagePreview ? (
                 <div className="flex flex-col items-center gap-4">
-                    <img src={product.productImage && product.productImage.startsWith('http') ? product.productImage : `${BACKEND_URL}${product.productImage}`} alt="Preview" className="w-44 h-44 object-cover rounded-2xl shadow-lg shadow-purple-500/10 border-2 border-white/50" />                  <p className="text-sm text-purple-500">Select a new image to replace</p>
-                </div>
+<img
+  src={imagePreview}
+  alt="Preview"
+  className="w-44 h-44 object-cover rounded-2xl shadow-lg shadow-purple-500/10 border-2 border-white/50"
+/>                </div>
               ) : (
                 <div>
                   <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-3">

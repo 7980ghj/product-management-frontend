@@ -95,7 +95,10 @@ const ProductList = () => {
     setFilters({ ...filters, page: newPage })
   }
 
+      console.log(products);
+
   return (
+
     <div>
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
@@ -151,9 +154,12 @@ const ProductList = () => {
               <div key={product._id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden card-hover group">
                 {/* Image */}
                 <div className="h-52 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden relative">
-                    <img src={product.image && product.image.startsWith('http') ? product.image : `${BACKEND_URL}${product.image}`} alt={product.name} />
-                    alt={product.productName}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 <img 
+  src={product.productImage && product.productImage.startsWith('data:') ? product.productImage : product.productImage ? `${BACKEND_URL}${product.productImage}` : '/placeholder.png'}
+  alt={product.productName}
+  className="w-full h-full object-cover"
+/>
+            
                   
                   {/* Status Badge */}
                   <div className="absolute top-3 left-3">

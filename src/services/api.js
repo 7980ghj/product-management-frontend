@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'https://product-management-backend-3.onrender.com/api',
-});
+baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',});
 
 // Products API
 export const getAllProducts = (params) => api.get('/products', { params });
@@ -12,5 +11,6 @@ export const updateProduct = (id, data) => api.put(`/products/${id}`, data);
 export const deleteProduct = (id) => api.delete(`/products/${id}`);
 export const getDashboardStats = () => api.get('/products/stats/dashboard');
 export const getProductsByCategory = (category) => api.get(`/products?category=${category}`);
+
 
 export default api;
