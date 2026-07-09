@@ -249,8 +249,7 @@ const Register = () => {
               </button>
             </div>
             {errors.confirmPassword && <p className="text-pink-500 text-xs mt-1.5 font-medium">{errors.confirmPassword}</p>}
-            {formData.confirmPassword && formData.password === formData.confirmPassword && (
-              <p className="text-green-500 text-xs mt-1.5 font-medium flex items-center gap-1">
+{formData.confirmPassword && formData.password === formData.confirmPassword && (              <p className="text-green-500 text-xs mt-1.5 font-medium flex items-center gap-1">
                 <FaCheck /> Passwords match
               </p>
             )}
